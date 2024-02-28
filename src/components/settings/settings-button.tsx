@@ -31,6 +31,7 @@ export const SettingsButton: FC<SettingsButtonProps> = (props) => (
           borderRadius: '50%',
           color: 'primary.contrastText',
           p: '10px',
+          display: 'none',
         }}
       >
         <SvgIcon>

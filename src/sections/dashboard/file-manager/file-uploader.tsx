@@ -15,7 +15,6 @@ interface FileUploaderProps {
   onClose?: () => void;
   open?: boolean;
   onSelectFiles: (files: File[]) => void; // Update prop name and type
-  userName: string;
 }
 
 export const FileUploader: FC<FileUploaderProps> = (props) => {

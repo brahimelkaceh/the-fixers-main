@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "the-fixers-415816",
+  "private_key_id": "2685ca275af62098f24e986745216eb54d640594",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCrKcegKIAdFHEz\npm3vICcrB7w8YSRE+zBQcALlTOJOeoFy0Lvk0OcDo9JC3C/rT77YIpNLkmQgJrtR\nDtbVdFnUgxLMw+N0T+ydoR3yWzKiLDrarBgIC9liHof3OmuDY7MwZkLjoGkgwixM\ngENt1q5NCI6x9jTJVdXwTJLiumyk1NiSNQnsrNv+5+wrgBvBMzNo4ii8J/6ZOR9W\nX8vqL8Msy9VMPvVlXDgLqghIyb5LM2ETrBelcHZGnLZljQvYkRLKm+O7AA9PRXXM\nNR769gICEsz4491JXMd79kN+PJAZO8MCEpq+IjJ7g/jnZ3EjDEIXZBs/m3qlwbX5\nAzfvV41lAgMBAAECggEAIcJwlYoPdMzgpAmWQtUybIYOzlDxrKpnpeHl7FCtDUIT\n8K+zc6bxfbIM6XOQ/wZgU7SEHWJ/HalOBmeZH4peonAE3/7eCMWv24pZBAGRW9PB\n+vn5FnMx2ezAMBbleEmMoQX2ePudaKDryF3/DrXKdLa0oGy5jiGAPDB6Qz52ac8f\n0kPNJqXi6+z+WOu3ou2itV9qC2kd7sj0DMu0RoFtktUTi0qIV6qOj8OBlus16CW3\n7xfabt/4ES9Kfmz33k8iQHiorNPnpsGigBYjNBmh2dx+80IdrMCTVTETXOLeO9XS\nbsrboGKSmIZ9K0Sp7zabbPDedqzBHag7R25RUTPssQKBgQDZlLZ7sYoUISLoN8tM\nRAbitf53PuUAqyJ4L+akyXBqEwFwXW79NOh4HOS00JsZ0DUSf27NLfx0wrtY18dh\nHnjWm/pa4qqq4JMhHDRq8Wzf0/WjZshCR6pGQ8BgY0j4HFoXkm2MXF9mI2Pl6UtD\nE40DL1z/EPt+wQTyLLasEVJg8QKBgQDJYtoopNzABHg2Zq5UCyrJnbDpLbQCo/oM\nYb+fEhkOgFdToZPf4o/6DZNbWmt0x14ZuWHf4NxGDljxRHxZY35pPFUnrHrBFJMk\nrnwmXqtVCeOnRBD2OXysjAA5rp7TzwhaTxrZ2F8+2lRQpjruu4yZ6auxk+WOktLH\na0ixw1kztQKBgHRJ4jo8CnN1vmVkpJhvZ0q2QHnVOKnhzXt1Bo2eSCG5ZLR8i3xz\nUagYsTfeonbqa+MmDr9Ey8BP77etJBfJJIZ3ORhoOxU3EAvLOkzKGgmLDKc3oOKj\n0OLbBS+/ANnytUgR79Dr8eTyF0tjI+GGyoAgSVDd77ywRwd0VHGklGXRAoGBAMRD\ngJVnxnOkZ3utKmxhzbtb4VP+5JZGNKTohpWCT8UgMvsgVzs0VFi/7kJzppHS0tSD\nJO3I+SOVS/0mX4HGQyZQVDUsFR4i7RwsqHXEgXmI/8K9xUIR2H1Ym8ebdNK7zEon\nGeYAxyI8KTvIJVsQkQBXCKsxleETGjSbS+dimIaZAoGAc5LtcQ6Gdz/TbdDcLTIZ\nZeSGN4Z87/rfC0TIgkHHGPN74po2j+ShdXUm8vvqYxd6v/LUpGWYrRX4Usyv7QSN\nUVBiISfBd2bmTDc4V7Gb9PpMQpXZtcFnvX7VlbegjmEuktfumG+aplnSmPnaiHzT\nsB/YojkELyL7Ms8V5YIDdwc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "the-fixers@the-fixers-415816.iam.gserviceaccount.com",
+  "client_id": "112326606113271483514",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/the-fixers%40the-fixers-415816.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

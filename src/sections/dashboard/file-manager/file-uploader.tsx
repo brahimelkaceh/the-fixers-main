@@ -15,6 +15,7 @@ interface FileUploaderProps {
   onClose?: () => void;
   open?: boolean;
   onSelectFiles: (files: File[]) => void; // Update prop name and type
+  userName: string;
 }
 
 export const FileUploader: FC<FileUploaderProps> = (props) => {
@@ -56,7 +57,10 @@ export const FileUploader: FC<FileUploaderProps> = (props) => {
       fullWidth
       maxWidth="sm"
       open={open}
-      onClose={onClose}
+      onClose={() => {
+        onClose?.();
+        handleRemoveAll();
+      }}
     >
       <Stack
         alignItems="center"
@@ -71,7 +75,10 @@ export const FileUploader: FC<FileUploaderProps> = (props) => {
         <Typography variant="h6">Upload Files</Typography>
         <IconButton
           color="inherit"
-          onClick={onClose}
+          onClick={() => {
+            onClose?.();
+            handleRemoveAll();
+          }}
         >
           <SvgIcon>
             <XIcon />

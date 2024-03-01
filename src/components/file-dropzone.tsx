@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { useState, type FC } from 'react';
 import PropTypes from 'prop-types';
 import type { DropzoneOptions, FileWithPath } from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
@@ -19,6 +19,12 @@ import Typography from '@mui/material/Typography';
 
 import { FileIcon } from 'src/components/file-icon';
 import { bytesToSize } from 'src/utils/bytes-to-size';
+import { ref, uploadBytes } from 'firebase/storage';
+import { storage } from 'src/libs/firebase';
+import toast, { Toaster } from 'react-hot-toast';
+import { FirebaseError } from 'firebase/app';
+import { CircularProgress } from '@mui/material';
+import Download from '@mui/icons-material/Download';
 
 export type File = FileWithPath;
 
@@ -33,11 +39,45 @@ interface FileDropzoneProps extends DropzoneOptions {
 export const FileDropzone: FC<FileDropzoneProps> = (props) => {
   const { caption, files = [], onRemove, onRemoveAll, onUpload, ...other } = props;
   const { getRootProps, getInputProps, isDragActive } = useDropzone(other);
-
+  const [loading, setLoading] = useState(false);
   const hasAnyFiles = files.length > 0;
 
+  // const uploadFile = async () => {
+  //   if (!hasAnyFiles || loading) return;
+
+  //   setLoading(true);
+
+  //   const uploadPromises = files.map(async (file) => {
+  //     const imageRef = ref(storage, `Files/${file.name}`);
+
+  //     try {
+  //       await uploadBytes(imageRef, file);
+  //       console.log(`File ${file.name} uploaded successfully`);
+  //     } catch (error) {
+  //       console.error(`Error uploading file ${file.name}:`, error.message);
+  //       toast.error(`Failed to upload ${file.name}`);
+  //       throw error; // Re-throw the error to ensure Promise.all catches it
+  //     }
+  //   });
+
+  //   try {
+  //     // Use Promise.all to wait for all uploads to finish
+  //     await Promise.all(uploadPromises);
+  //     toast.success('All files uploaded successfully');
+  //     onUpload?.();
+  //   } catch (error) {
+  //     console.error('Error uploading files:', error.message);
+  //     toast.error('Failed to upload files');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   return (
     <div>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Box
         sx={{
           alignItems: 'center',
@@ -160,6 +200,16 @@ export const FileDropzone: FC<FileDropzoneProps> = (props) => {
               size="small"
               type="button"
               variant="contained"
+              startIcon={
+                loading ? (
+                  <CircularProgress
+                    color="success"
+                    size={12}
+                  />
+                ) : (
+                  <Download />
+                )
+              }
             >
               Upload
             </Button>

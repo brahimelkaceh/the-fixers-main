@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FC } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup'; // Import yup
@@ -9,8 +9,12 @@ import TextField from '@mui/material/TextField';
 import Send01 from '@untitled-ui/icons-react/build/esm/Send01';
 import { FileUploader } from 'src/sections/dashboard/file-manager/file-uploader';
 import { useDialog } from 'src/hooks/use-dialog';
-import { Alert, SvgIcon } from '@mui/material';
+import { Alert, CircularProgress, SvgIcon } from '@mui/material';
 import Upload01 from '@untitled-ui/icons-react/build/esm/Upload01';
+import DownloadFiles from './DownloadFiles';
+import FirebaseUsers from 'src/api/users';
+import { User } from 'src/api/users/user-interface';
+import toast, { Toaster } from 'react-hot-toast';
 
 // Define the validation schema
 const validationSchema = yup.object({
@@ -18,10 +22,14 @@ const validationSchema = yup.object({
   entreprise: yup.string().required('Entreprise partenaire est requis'),
   projet: yup.string().required('Intitulé du projet est requis'),
   email: yup.string().email('Format email invalide').required('Addresse Email est requis'),
-  files: yup.mixed().required('Veuillez sélectionner un fichier'),
+  // files: yup.mixed().required('Veuillez sélectionner un fichier'),
 });
 
+const firebaseNewUser = new FirebaseUsers();
+
 export const SubmitForm: FC = () => {
+  const [files, setFiles] = useState<File[]>([]);
+
   const uploadDialog = useDialog();
 
   // Initialize Formik
@@ -31,15 +39,41 @@ export const SubmitForm: FC = () => {
       entreprise: '',
       projet: '',
       email: '',
-      files: null,
-    },
-    onSubmit: (values) => {
-      // Handle form submission here
-      console.log(values);
     },
     validationSchema: validationSchema, // Use the validation schema
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
+      console.log(values);
+      handleUpload();
+      try {
+        await firebaseNewUser.createUser(values as unknown as User);
+        toast.success('Utilisateur créé avec succès !');
+        resetForm();
+      } catch (error) {
+        toast.error('Erreur lors de la création du Utilisateur!');
+        console.error('Erreur lors de la création du Utilisateur!: ', error);
+      } finally {
+        setSubmitting(false);
+      }
+    },
   });
 
+  const handleUpload = async () => {
+    if (files.length === 0) {
+      toast.error('No files selected for upload');
+      return;
+    }
+
+    const firebaseUsers = new FirebaseUsers();
+    console.log('return upload files', firebaseUsers);
+
+    try {
+      await firebaseUsers.uploadFiles(formik.values.nom, files);
+    } catch (error) {
+      console.log('erorr' + error.message);
+
+      toast.error('Error uploading files:', error.message);
+    }
+  };
   return (
     <Box
       sx={{
@@ -53,6 +87,10 @@ export const SubmitForm: FC = () => {
         borderRadius: 2,
       }}
     >
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <form onSubmit={formik.handleSubmit}>
         <Grid
           container
@@ -146,21 +184,18 @@ export const SubmitForm: FC = () => {
                 onClose={uploadDialog.handleClose}
                 open={uploadDialog.open}
                 onSelectFiles={(files) => {
-                  // Update the Formik state with multiple selected files
-                  formik.setFieldValue('files', files);
+                  console.log('files', files);
+                  setFiles(files);
                 }}
               />
             </Grid>
-            {formik.touched.files && formik.errors.files && (
-              <Alert severity="error">{formik.errors.files}</Alert>
-            )}
           </Grid>
         </Grid>
         <Box sx={{ mt: 6 }}>
           <Button
             type="submit"
             variant="contained"
-            startIcon={<Send01 />}
+            startIcon={formik.isSubmitting ? <CircularProgress size={12} /> : <Send01 />}
           >
             Valider
           </Button>

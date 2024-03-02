@@ -43,7 +43,7 @@ export const SubmitForm: FC = () => {
     validationSchema: validationSchema, // Use the validation schema
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       console.log(values);
-      handleUpload();
+      // handleUpload();
       try {
         await firebaseNewUser.createUser(values as unknown as User);
         toast.success('Utilisateur créé avec succès !');

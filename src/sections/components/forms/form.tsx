@@ -15,6 +15,7 @@ import DownloadFiles from './DownloadFiles';
 import FirebaseUsers from 'src/api/users';
 import { User } from 'src/api/users/user-interface';
 import toast, { Toaster } from 'react-hot-toast';
+import { sendDataToApi } from 'src/api/send-mail';
 
 // Define the validation schema
 const validationSchema = yup.object({
@@ -44,6 +45,8 @@ export const SubmitForm: FC = () => {
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       console.log(values);
       // handleUpload();
+      await sendDataToApi(values);
+      return;
       try {
         await firebaseNewUser.createUser(values as unknown as User);
         toast.success('Utilisateur créé avec succès !');
